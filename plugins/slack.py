@@ -50,5 +50,4 @@ def recipe(message):
     材料: {recipe_material}
     """
 
-
     message.reply(suggestion)
