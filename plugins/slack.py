@@ -49,6 +49,5 @@ def recipe(message):
     URL: {recipe_url}
     材料: {recipe_material}
     """
-
-
+    
     message.reply(suggestion)
