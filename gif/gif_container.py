@@ -1,0 +1,1 @@
+gif_list = ["/home/saeki/playground/slackbot_banmeshi/gif/ohyeah.gif"]

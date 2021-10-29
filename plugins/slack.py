@@ -2,10 +2,12 @@ import sys
 sys.path.append("/~/slackbot_banmeshi")
 
 from slackbot.bot import listen_to, respond_to
+from slacker import Slacker
 from menus import menu_list
+from gif.gif_container import gif_list
 from random import choice
 import requests
-from pprint import pprint
+from slackbot_settings import API_TOKEN
 
 @listen_to("こんにちは")
 @listen_to("Hello")
@@ -50,5 +52,19 @@ def recipe(message):
     材料: {recipe_material}
     """
     
-    
     message.reply(suggestion)
+
+@listen_to("gif")
+def gif_upload(message):
+    _gif_uploader()
+
+    message.reply("gifを送信しました")
+
+
+def _gif_uploader():
+    channel = "C02JM25TNV7"
+    gif_file = choice(gif_list)
+
+    files = {'file': open(gif_file, 'rb')}
+    param = {'token':API_TOKEN, 'channels':channel}
+    requests.post(url="https://slack.com/api/files.upload",params=param, files=files)
