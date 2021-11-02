@@ -8,6 +8,7 @@ from gif.gif_container import gif_list
 from random import choice
 import requests
 from slackbot_settings import API_TOKEN
+import json
 
 @listen_to("こんにちは")
 @listen_to("Hello")
@@ -32,7 +33,10 @@ def try_menu(message):
     message.reply("ご自分で決めたらどうですか？ https://cookpad.com/")
 
 
-url = "https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426?applicationId=1034865116788635147&categoryId=30"
+with open("../config.json", "r") as f:
+    id = json.load(f)
+
+url = f'https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426?applicationId={id.get("rakuten_app_id")}&categoryId=30'
 api_data = requests.get(url).json()
 recipe_list = []
 
