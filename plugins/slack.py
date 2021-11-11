@@ -33,7 +33,7 @@ def try_menu(message):
     message.reply("ご自分で決めたらどうですか？ https://cookpad.com/")
 
 
-with open("../config.json", "r") as f:
+with open("config.json", "r") as f:
     id = json.load(f)
 
 url = f'https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426?applicationId={id.get("rakuten_app_id")}&categoryId=30'
