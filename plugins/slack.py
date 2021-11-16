@@ -2,7 +2,6 @@ import sys
 sys.path.append("/~/slackbot_banmeshi")
 
 from slackbot.bot import listen_to, respond_to
-from slacker import Slacker
 from menus import menu_list
 from gif.gif_container import gif_list
 from random import choice
@@ -59,7 +58,7 @@ URL: {recipe_url}
     
     message.reply(suggestion)
 
-@listen_to("gif")
+@respond_to("gif")
 def gif_upload(message):
     _gif_uploader()
 
@@ -72,4 +71,4 @@ def _gif_uploader():
 
     files = {'file': open(gif_file, 'rb')}
     param = {'token':API_TOKEN, 'channels':channel}
-    requests.post(url="https://slack.com/api/files.upload",params=param, files=files)
+    requests.post(url="https://slack.com/api/files.upload", params=param, files=files)
