@@ -1,3 +1,4 @@
+from re import A
 import sys
 sys.path.append("/~/slackbot_banmeshi")
 
@@ -64,11 +65,31 @@ def gif_upload(message):
 
     message.reply("gifを送信しました")
 
+@respond_to("(.*)")
+def message_post(message, text):
+    _post_text(text)
+
+    message.reply(
+f"""
+以下の内容を送信しました
+{text}
+""")
+
+channel = "C02JM25TNV7"
 
 def _gif_uploader():
-    channel = "C02JM25TNV7"
     gif_file = choice(gif_list)
 
     files = {'file': open(gif_file, 'rb')}
     param = {'token':API_TOKEN, 'channels':channel}
     requests.post(url="https://slack.com/api/files.upload", params=param, files=files)
+
+def _post_text(text):
+    text = text
+    data = {
+        "token": API_TOKEN,
+        "channel": channel,
+        "text": text
+    }
+
+    requests.post(url="https://slack.com/api/chat.postMessage", data=data)
