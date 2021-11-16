@@ -11,10 +11,11 @@ from slackbot_settings import API_TOKEN
 import json
 
 @listen_to("こんにちは")
+@listen_to("こんばんは")
 @listen_to("Hello")
 @listen_to("hello")
 def hello(message):
-    message.reply("こんにちは！")
+    message.reply("こんばんは！今日の晩ご飯はお決まりですか？")
 
 
 @listen_to("ありがとう")
@@ -49,12 +50,12 @@ def recipe(message):
     pick_up = choice(recipe_list)
     recipe_title = pick_up["recipeTitle"]
     recipe_url = pick_up["recipeUrl"]
-    recipe_material = pick_up["recipeMaterial"]
+    recipe_material = ", ".join(pick_up["recipeMaterial"])
     
-    suggestion = f"""【 {recipe_title} 】
-    URL: {recipe_url}
-    材料: {recipe_material}
-    """
+    suggestion = f"""
+【 {recipe_title} 】
+URL: {recipe_url}
+材料: {recipe_material}"""
     
     message.reply(suggestion)
 
