@@ -51,6 +51,8 @@ recipe_list = []
 
 @listen_to("recipe")
 @listen_to("レシピ")
+@respond_to("recipe")
+@respond_to("レシピ")
 def recipe(message):
     for recipe in api_data["result"]:
         recipe_list.append(recipe)
