@@ -14,22 +14,30 @@ import json
 @listen_to("こんばんは")
 @listen_to("Hello")
 @listen_to("hello")
+@respond_to("こんにちは")
+@respond_to("こんばんは")
+@respond_to("Hello")
+@respond_to("hello")
 def hello(message):
     message.reply("こんばんは！今日の晩ご飯はお決まりですか？")
 
 
 @listen_to("ありがとう")
+@respond_to("ありがとう")
 def thankyou(message):
     message.reply("どういたしまして！")
 
 
 @listen_to("メニュー")
 @listen_to("menu")
+@respond_to("メニュー")
+@respond_to("menu")
 def menu(message):
     message.reply(choice(menu_list))
 
 
 @listen_to("わかってないな")
+@respond_to("わかってないな")
 def try_menu(message):
     message.reply("ご自分で決めたらどうですか？ https://cookpad.com/")
 
